@@ -5,5 +5,6 @@
  * * @Email: rossetti.jason@gmail.com
  **/
 
+// TODO: After doing the Date and Time2 class, start working on 8.12, 8.15,
 public class DateTime {
 }
