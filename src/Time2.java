@@ -11,6 +11,11 @@ public class Time2 {
     private int second;
 
 
+    // Getters
+    public int getHour() { return hour; }
+    public int getMinute() { return minute; }
+    public int getSecond() { return second; }
+
     // Constructors
     public Time2() {
         this(0, 0, 0);
@@ -77,15 +82,6 @@ public class Time2 {
         this.second = second;
     }
 
-    // Getters
-    public int getHour() { return hour; }
-    public int getMinute() { return minute; }
-    public int getSecond() { return second; }
-
-    public String toUniversalString() {
-        return String.format(
-                "%02d:%02d:%02d", getHour(), getMinute(), getSecond());
-    }
 
     public String toString() {
         return String.format("%d:%02d:%02d %s",
@@ -93,17 +89,45 @@ public class Time2 {
                 getMinute(), getSecond(), (getHour() < 12 ? "AM" : "PM"));
     }
 
+    public String toUniversalString() {
+        return String.format(
+                "%02d:%02d:%02d", getHour(), getMinute(), getSecond());
+    }
+
+
+
     // TODO: Finish these methods and test them. Should be able to increment into the next day (11:59:59 "PM" -> 12:00:00 "AM")
 
     public void tick() {
+        ++this.second;
+        if (second == 60){
+            incrementMinute();
+            second = 0;
+        }
 
+        if (minute == 60) {
+            incrementHour();
+            minute = 0;
+        }
+        if (hour == 24) {
+            nextDay();
+        }
     }
 
     public void incrementHour() {
-
+        ++hour;
     }
 
-    public void incrementMinute() {
 
+    public void incrementMinute() {
+        ++minute;
+    }
+
+
+
+    public void nextDay(){
+        hour = 1;
+        minute = 0;
+        second = 0;
     }
 }
