@@ -18,6 +18,7 @@ public class Date {
     public int getYear() { return year; }
     public int getMonth() { return month; }
 
+    // Sets the day with validation checkers for leap year and current month
     public void setDay(int day) {
         if (day <= 0 || day < 12) {
             throw new IllegalArgumentException("Month  ("+ month + ") must be 1 - 12");
@@ -31,7 +32,7 @@ public class Date {
         this.day = day;
     }
 
-
+    // Sets the year
     public void setYear(int year) {
         if (year <= 0 || year >= 2621) {
             throw new IllegalArgumentException("Month  (" + month + ") must be 1 - 2621");
@@ -40,7 +41,7 @@ public class Date {
     }
 
 
-
+    // Sets the month
     public void setMonth(int month) {
         if (month <= 0 || month > 12) {
             throw new IllegalArgumentException("Month  ("+ month + ") must be 1 - 12");
@@ -50,6 +51,7 @@ public class Date {
 
 
 
+    // Date constructor using mm/dd/yyyy
     public Date(int month, int day, int year) {
         if (month <= 0 || month > 12) {
             throw new IllegalArgumentException("Month  ("+ month + ") must be 1 - 12");
@@ -60,6 +62,11 @@ public class Date {
         if (day <= 0 || (day > daysPerMonth[month] && !(month == 2 && day == 29))) {
             throw new IllegalArgumentException("day (" + day + ") out-of-range for the specific month");
         }
+
+        if (year <= 0 || year > 3000) {
+            throw new IllegalArgumentException("Month  ("+ month + ") must be 1 - 12");
+        }
+
         this.month = month;
         this.day = day;
         this.year = year;
@@ -67,6 +74,7 @@ public class Date {
         System.out.printf("Date object constructor for date %s%n", this);
     }
 
+    // Date toString
     public String toString() {
         return String.format("%d/%d/%d", month, day, year);
     }
@@ -80,6 +88,7 @@ public class Date {
         }
     }
 
+    // Increments the month by one according to the days in the month
     public void nextMonth() {
         int index = month;
         if (day > (daysPerMonth[index])) {
@@ -94,6 +103,7 @@ public class Date {
         }
     }
 
+    // Increments the year
     public void nextYear() {
             ++year;
     }
